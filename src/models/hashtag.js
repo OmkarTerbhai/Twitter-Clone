@@ -1,19 +1,15 @@
-import { ObjectId } from "mongoose";
 import mongoose from "mongoose";
+import Tweet from "./tweet";
 
 const hashtagSchema = new mongoose.Schema({
     text: {
         type: String
     },
-    likes: {
-        type: Number
-    },
-    noOfRetweets: {
-        type: Number
-    },
-    comment: {
-        type: String
-    }
+    tweets: [
+        {
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ]
 });
 
 const Tweet = mongoose.model('Tweet', tweetSchema);

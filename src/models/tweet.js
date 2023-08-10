@@ -1,4 +1,4 @@
-import { ObjectId } from "mongoose";
+import { ObjectId } from "bson";
 import mongoose from "mongoose";
 
 const tweetSchema = new mongoose.Schema({
@@ -12,7 +12,7 @@ const tweetSchema = new mongoose.Schema({
         type: Number
     },
     comment: {
-        type: String
+        type: ObjectId
     }
 });
 
