@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Tweet from "./tweet";
 
 const hashtagSchema = new mongoose.Schema({
     text: {
@@ -12,6 +11,6 @@ const hashtagSchema = new mongoose.Schema({
     ]
 });
 
-const Tweet = mongoose.model('Tweet', tweetSchema);
+const Hashtag = mongoose.model('Hashtag', hashtagSchema);
 
-export default Tweet;
+export default Hashtag;
