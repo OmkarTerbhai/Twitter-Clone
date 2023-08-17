@@ -7,9 +7,11 @@ class UserRepository extends CrudRepository {
     }
 
     async findByEmail(email) {
-        const user = this.model.find({
+        
+        const user = await this.model.find({
             email: email
         });
+        console.log(user);
         return user;
     }
 }
