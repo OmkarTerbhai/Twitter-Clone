@@ -1,24 +1,24 @@
 import JWT from 'passport-jwt';
-import User from '../models/user.js'
+import UserRepository from '../repositories/user-repository.js';
 
 const JwtStrategy = JWT.Strategy;
-
+const userRepository = new UserRepository();
 const ExtractJWT = JWT.ExtractJwt;
 
 const opts = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'twitter_secret'
+    secretOrKey: 'twitter-secret'
 }
 
 export const passportAuth = (passport) => {
     console.log("Initialized middleware")
     passport.use(new JwtStrategy(opts, async(jwt_payload, done) => {
-        
-        const user = await User.findById(jwt_payload.id);
-        console.log(user);
+        console.log("Here in use callback");
+        const user = await userRepository.findByEmail(jwt_payload.email);
+        console.log("User in JWT middleware: ", user);
         console.log("User in middleware: ", user);
         if(!user) {
-            done(null, false);
+            done(null,  false);
         }
         else {
             done(null, user);

@@ -34,8 +34,8 @@ userSchema.methods.comparePassword = function compare(password) {
 
 userSchema.methods.generateJWT = function generate() {
     return jwt.sign({
-        id: this._id,
         email: this.email,
+        password: this.password,
     }, 'twitter-secret', {
         expiresIn: '2h'
     });
